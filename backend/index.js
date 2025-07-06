@@ -3,6 +3,7 @@ import cors from '@fastify/cors';
 import fastifyStatic from '@fastify/static';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import registerRoutes from './routes/registerRoutes.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = Fastify({ logger: true });
@@ -21,9 +22,13 @@ app.register(fastifyStatic, {
     index: 'index.html',
 });
 
+// Backend
+app.register(registerRoutes, { prefix: '/api' })
+
 // Rotas básicas de teste
 app.get('/teste', (req, reply) => {
     reply.send('Servidor rodando!');
 });
+
 
 export default app;
