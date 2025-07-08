@@ -13,7 +13,7 @@ function Steps() {
     }, []);
 
     return (
-        <div className='container mt-3'>
+        <div className='container'>
             <div className='row g-3'>
                 {steps.map(step => (
                     <div className='mouseEffect col-12 col-md' key={step.id}>

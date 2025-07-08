@@ -15,7 +15,7 @@ createRoot(document.getElementById('root')).render(
     <Header />
     <Steps />
     <Forms />
-    <Agreement/>
+    {/* <Agreement/> */}
     {/* <App /> */}
   </StrictMode>,
 )

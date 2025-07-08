@@ -6,8 +6,8 @@ export function getAllUsers() {
 
 export function createUser(user) {
   const stmt = db.prepare(`
-    INSERT INTO users (userName, email, deckName, tier, registerDate, tournamentId, status, score, finalScore, hasPaid)
-    VALUES (@userName, @email, @deckName, @tier, @registerDate, @tournamentId, @status, @score, @finalScore, @hasPaid)
+    INSERT INTO users (userName, email, phone, deckName, tier, registerDate, tournamentId, status, score, finalScore, hasPaid)
+    VALUES (@userName, @email, @phone, @deckName, @tier, @registerDate, @tournamentId, @status, @score, @finalScore, @hasPaid)
   `);
   return stmt.run(user);
 }

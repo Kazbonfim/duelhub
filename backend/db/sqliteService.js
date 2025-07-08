@@ -12,6 +12,7 @@ db.exec(`
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     userName TEXT NOT NULL,
     email TEXT UNIQUE NOT NULL,
+    phone TEXT UNIQUE NOT NULL,
     deckName TEXT,
     tier TEXT,
     registerDate TEXT,

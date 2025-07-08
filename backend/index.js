@@ -25,8 +25,8 @@ app.register(fastifyStatic, {
 });
 
 // Backend
-app.register(registerRoutes, { prefix: '/api' })
-app.register(userRoutes, { prefix: '/api' })
+app.register(registerRoutes, { prefix: '/api' });
+app.register(userRoutes, { prefix: '/api' });
 
 // Rotas básicas de teste
 app.get('/teste', (req, reply) => {
