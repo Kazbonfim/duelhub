@@ -1,4 +1,4 @@
-import * as userModel from '../models/userModel.js';
+import * as userModel from './app.user.model.js';
 
 export function listUsers(req, reply) {
   const users = userModel.getAllUsers();
@@ -6,12 +6,13 @@ export function listUsers(req, reply) {
 }
 
 export function addUser(req, reply) {
-  const { userName, email, phone } = req.body;
+  const { userName, email, phone, password } = req.body;
 
   const userData = {
     userName,
     email,
     phone,
+    password,
     deckName: null,
     tier: 'Beginner',
     registerDate: new Date().toISOString(),

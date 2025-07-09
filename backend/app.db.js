@@ -3,7 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const dbPath = path.join(__dirname, '../database.sqlite');
+const dbPath = path.join(__dirname, './database.sqlite');
 
 const db = new Database(dbPath);
 
@@ -13,6 +13,7 @@ db.exec(`
     userName TEXT NOT NULL,
     email TEXT UNIQUE NOT NULL,
     phone TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL,
     deckName TEXT,
     tier TEXT,
     registerDate TEXT,

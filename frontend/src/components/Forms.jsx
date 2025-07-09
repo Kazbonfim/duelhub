@@ -6,6 +6,7 @@ function Forms() {
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
+    const [password, setPassword] = useState('');
     const [arquivo, setArquivo] = useState(null);
 
     const handleSubmit = async (e) => {
@@ -14,12 +15,14 @@ function Forms() {
             const response = await axios.post('/api/users', {
                 userName,
                 email,
-                phone
+                phone,
+                password,
             });
-            alert('Usuário cadastrado! ID: ' + response.data.id);
+            alert('Registro feito com sucesso! Seu ID é: ' + response.data.id);
             setUserName('');
             setEmail('');
             setPhone('');
+            setPassword('');
             setArquivo(null);
         } catch (error) {
             alert('Erro ao cadastrar usuário');
@@ -68,6 +71,17 @@ function Forms() {
                             />
                         </div>
                         <div className="mb-3">
+                            <label htmlFor="password" className="form-label">Senha</label>
+                            <input
+                                type="password"
+                                className="form-control"
+                                id="password"
+                                placeholder="**********"
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
+                            />
+                        </div>
+                        {/* <div className="mb-3">
                             <label htmlFor="arquivo" className="form-label">Envio de arquivo (.ydk)</label>
                             <input
                                 type="file"
@@ -78,7 +92,7 @@ function Forms() {
                                 disabled
                             />
                         </div>
-                        <button type="submit" className="btn btn-primary">Enviar</button>
+                        <button type="submit" className="btn btn-primary">Enviar</button> */}
                     </form>
                 </div>
 

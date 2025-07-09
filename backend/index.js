@@ -3,8 +3,7 @@ import cors from '@fastify/cors';
 import fastifyStatic from '@fastify/static';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import registerRoutes from './routes/registerRoutes.js';
-import userRoutes from './routes/userRoutes.js';
+import userRoutes from './app.user.routes.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = Fastify({ logger: true });
@@ -25,7 +24,6 @@ app.register(fastifyStatic, {
 });
 
 // Backend
-app.register(registerRoutes, { prefix: '/api' });
 app.register(userRoutes, { prefix: '/api' });
 
 // Rotas básicas de teste

@@ -13,7 +13,7 @@ const Information = () => {
 
         fetchData();
 
-        const interval = setInterval(fetchData, 20000);
+        const interval = setInterval(fetchData, 5000); // 10s
 
         return () => clearInterval(interval);
     }, []);
