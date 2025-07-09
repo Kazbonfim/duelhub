@@ -6,7 +6,7 @@
   "scripts": {
     "nodemon": "npm run build && nodemon app.js && npm run dev",
     "start": "node app.js",
-    "dev": "vite",
+    "dev": "cd frontend && vite",
     "build": "cd frontend && npm install && npm run build",
     "lint": "eslint .",
     "preview": "vite preview"

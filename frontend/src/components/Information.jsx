@@ -1,36 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Information = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        const data = [
-            {
-                id: 1,
-                userName: "kazbonfim",
-                fullName: "Kazuo Bonfim",
-                email: "kazuo@example.com",
-                deckName: "Dark Magician Control",
-                tier: "Beginner",
-                registerDate: "2025-07-06T14:30:00Z",
-                tournamentId: 101,
-                status: "active",
-                score: 0,
-            },
-            {
-                id: 2,
-                userName: "lunalightX",
-                fullName: "Luna Silva",
-                email: "luna@example.com",
-                deckName: "Lunalight OTK",
-                tier: "Intermediate",
-                registerDate: "2025-07-06T15:00:00Z",
-                tournamentId: 101,
-                status: "active",
-                score: 0,
-            },
-        ];
-        setData(data);
+        const fetchData = () => {
+            axios.get('/api/users')
+                .then(res => setData(Array.isArray(res.data) ? res.data : []))
+                .catch(() => setData([]));
+        };
+
+        fetchData();
+
+        const interval = setInterval(fetchData, 5000); // 10s
+
+        return () => clearInterval(interval);
     }, []);
 
     const formatDate = (isoString) => {
@@ -46,24 +31,32 @@ const Information = () => {
     return (
         <div
             className="spaceMono card bg-dark text-white shadow mx-auto"
-            style={{ borderRadius: "0px", maxWidth: "560px", width: "100%" }}
+            style={{ borderRadius: "20px", maxWidth: "560px", width: "100%" }}
         >
             <ul className="list-group list-group-flush">
                 <li
                     className="list-group-item text-white d-flex align-items-center"
-                    style={{ borderColor: "#282b30", backgroundColor: "#422773" }}
+                    style={{ borderColor: "#282b30", backgroundColor: "#b03a2e", borderRadius: "0px" }}
                 >
                     Últimos participantes
                     <i className="bi bi-person ms-1"></i>
                 </li>
-                {data.slice(0, 8).map(({ id, userName, tier, registerDate }) => (
+                <li
+                    className="d-flex justify-content-between list-group-item text-white border-dark"
+                    style={{ backgroundColor: "#ec7063", borderRadius: "0px" }}
+                >
+                    <span style={{ flex: 1, minWidth: 0 }} className="text-truncate pe-2">Nome</span>
+                    <span style={{ width: "80px", textAlign: "center" }}>Tier</span>
+                    <span style={{ width: "90px", textAlign: "right" }}>Inscrição</span>
+                </li>
+                {data.slice(0, 7).map(({ id, userName, tier, registerDate }) => (
                     <li
                         className="mouseEffect d-flex justify-content-between list-group-item bg-dark text-white border-dark"
                         key={id}
                     >
-                        <span>{userName}</span>
-                        <span>{tier}</span>
-                        <span>{formatDate(registerDate)}</span>
+                        <span style={{ flex: 1, minWidth: 0 }} className="text-truncate pe-2">{userName}</span>
+                        <span style={{ width: "80px", textAlign: "center" }}>{tier}</span>
+                        <span style={{ width: "90px", textAlign: "right" }}>{formatDate(registerDate)}</span>
                     </li>
                 ))}
             </ul>
